@@ -1,0 +1,12 @@
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: scroll;
+}
+:root{
+  --black-color: #000000;
+  --white-color: #ffffff;
+  --gray-color: rgba(66, 66, 66, 0.6);
+  --lightblack-color: #211621;
+}
