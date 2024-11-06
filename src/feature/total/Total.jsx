@@ -8,6 +8,7 @@ const Container = styled.div`
   justify-content: space-between;
   width: 90%;
   height: 60px;
+  overflow-x: scroll;
 `;
 const Total = () => {
   return (

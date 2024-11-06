@@ -3,7 +3,9 @@ import Live from "./Live"
 
 const Container = styled.div`
     width: 100%;
-    height: 301.37px;
+    height: 601.37px;
+    overflow-x: scroll;
+
 `
 const Chart = () => {
   return (

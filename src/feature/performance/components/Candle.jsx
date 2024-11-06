@@ -68,6 +68,7 @@ const Candle = () => {
       chart.timeScale().applyOptions({
         borderColor: "#444",
         barSpacing:10,
+        fixLeftEdge:true,
 
         timeVisible: true,
         tickMarkFormatter: (time) => {

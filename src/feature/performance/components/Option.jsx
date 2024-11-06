@@ -4,10 +4,16 @@ import { UseValue } from "../../../context/ContextApi";
 
 const Container = styled.div`
   width: 100%;
-  height: 32px;
+  height: 72px;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  gap: 25px;
+  flex-direction: column;
+  @media (min-width: 800px) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0px;
+  }
   .candle {
     display: flex;
     align-items: center;
@@ -27,15 +33,12 @@ const Container = styled.div`
   }
 `;
 const Option = () => {
-
-  const { dispacth} = UseValue()
-
+  const { dispacth } = UseValue();
 
   function HandleChangeOption(e) {
-    const namevalue = e.target.value
-    dispacth({type:"name" , payLoad:namevalue})
+    const namevalue = e.target.value;
+    dispacth({ type: "name", payLoad: namevalue });
   }
-
 
   return (
     <Container>
@@ -43,10 +46,10 @@ const Option = () => {
         <select onChange={HandleChangeOption}>
           <option value="BTC">BTC</option>
           <option value="XRP">XRP</option>
-          <option  value="ETH">ETH</option>
-          <option  value="SOL">SOL</option>
-          <option  value="DOGE">DOGE</option>
-          <option  value="UNI">UNI</option>
+          <option value="ETH">ETH</option>
+          <option value="SOL">SOL</option>
+          <option value="DOGE">DOGE</option>
+          <option value="UNI">UNI</option>
         </select>
         <svg
           width="24"

@@ -5,10 +5,10 @@ import Chart from "./components/Chart";
 
 const Container = styled.form`
   width: 90%;
-  height: 395.37px;
+  height:auto;
   display: flex;
   flex-direction: column;
-  gap: 19px;
+  gap: 29px;
 `;
 const Performance = () => {
   function HandleSubmit(e) {
