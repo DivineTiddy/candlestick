@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Text from "../../../ui/Text";
 
 const Container = styled.div`
-  width: 169px;
+  width: 229px;
   height: inherit;
   display: flex;
   gap: 9px;
