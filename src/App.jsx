@@ -11,7 +11,6 @@ const StyledApp = styled.div`
   flex-direction: column;
   gap: 47px;
   padding: 42px 0px;
-    background-color: var(--black-color);
 
   @media (min-width: 800px) {
     width: 100%;
@@ -20,9 +19,13 @@ const StyledApp = styled.div`
 `;
 
 const App = () => {
+  
+
+
   return (
     <ContextApi>
       <StyledApp>
+       
       <Total />
       <Performance />
     </StyledApp>

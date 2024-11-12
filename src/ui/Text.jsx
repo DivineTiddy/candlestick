@@ -34,7 +34,7 @@ const Text = styled.p`
     `}
   padding:0px;
   margin: 0px;
-  color: var(--white-color);
+  font-family: "Inter", sans-serif;
 `;
 
 export default Text;

@@ -1,11 +1,11 @@
 import { createChart, LineStyle } from "lightweight-charts";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { UseValue } from "../../../context/ContextApi";
 
 const Candle = () => {
-  const { date, cyrptoName } = UseValue();
-  const [isLoading, setIsLoading] = useState(false); // Loading state
+  const { date, cyrptoName  } = UseValue();
   const lineSeriesRef = useRef(null);
+  const tooltipRef = useRef();
 
   useEffect(
     function () {
@@ -15,6 +15,7 @@ const Candle = () => {
             `https://min-api.cryptocompare.com/data/v2/histo${date}?fsym=${cyrptoName}&tsym=USD&limit=30&api_key=2b0f02cf2f5de76a1b0c8515fa21b9e77cac8884050776fb3b9a6070d32f15a0`
           );
           const result = await response.json();
+
           const data = result.Data.Data;
 
           const formattedData = Array.isArray(data)
@@ -27,14 +28,12 @@ const Candle = () => {
               }))
             : [];
           newSeries.setData(formattedData);
-          chart.timeScale().fitContent()
-    
+          chart.timeScale().fitContent();
 
           // setData(formattedData); // Update state with fetched data
         } catch (error) {
-          console.error("Error fetching data:", error);
-        } finally {
-          setIsLoading(false); // Set loading to false after data is loaded
+          return error
+          // dispacth({type:"error" , payLoad:error})
         }
       }
 
@@ -43,7 +42,7 @@ const Candle = () => {
       //  DISPLAY CHART STYLED
       const chart = createChart(lineSeriesRef.current, {
         layout: {
-          background: { color: "black" },
+          background: { color: "#121212" },
           textColor: "#DDD",
         },
         grid: {
@@ -64,11 +63,12 @@ const Candle = () => {
         visible: true,
         invertScale: true,
       });
+
       // Setting the border color for the horizontal axis
       chart.timeScale().applyOptions({
         borderColor: "#444",
-        barSpacing:10,
-        fixLeftEdge:true,
+        barSpacing: 10,
+        fixLeftEdge: true,
 
         timeVisible: true,
         tickMarkFormatter: (time) => {
@@ -108,7 +108,7 @@ const Candle = () => {
       // Create a number format using Intl.NumberFormat
       const myPriceFormatter = Intl.NumberFormat(currentLocale, {
         style: "currency",
-        currency: "EUR", // Currency for data points
+        currency: "USD", // Currency for data points
         maximumSignificantDigits: 3,
       }).format;
 
@@ -138,7 +138,6 @@ const Candle = () => {
         borderVisible: false,
         wickUpColor: "#5CFF9C",
         wickDownColor: "#F00090",
-        
       });
       const handleResize = () => {
         chart.applyOptions({
@@ -152,9 +151,18 @@ const Candle = () => {
         window.removeEventListener("resize", handleResize);
       };
     },
-    [date, cyrptoName]
+    [date, cyrptoName ]
   );
-  return <div>{isLoading ? "" : <div ref={lineSeriesRef} />}</div>;
+  return (
+    <div>
+      <div ref={lineSeriesRef} style={{ position: "relative" }}>
+        <div
+          ref={tooltipRef}
+          style={{ position: "absolute", zIndex: "10" }}
+        ></div>
+      </div>
+    </div>
+  );
 };
 
 export default Candle;

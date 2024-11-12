@@ -8,9 +8,12 @@ const currentState = {
   isLoading: true,
   priceData:{},
   coinsPrice:{},
+  error:false
 };
 const Reducer = (state, action) => {
   switch (action.type) {
+    case "error":
+      return {...state , error:true}
     case "dateResult":
       return { ...state, dateResult: action.payLoad };
     case "name":
@@ -29,7 +32,7 @@ const Reducer = (state, action) => {
 };
 
 const ContextApi = ({ children }) => {
-  const [{ dateResult, date, cyrptoName, priceData , coinsPrice , isLoading}, dispacth] = useReducer(
+  const [{error , dateResult, date, cyrptoName, priceData , coinsPrice , isLoading}, dispacth] = useReducer(
     Reducer,
     currentState
   );
@@ -52,6 +55,8 @@ const ContextApi = ({ children }) => {
         dispacth({ type: "priceData", payLoad: data });
       } catch (error) {
         console.log(error);
+        dispacth({ type: "error"});
+
       }finally{
         dispacth({type:"loading" , payLoad:false})
       }
@@ -68,7 +73,8 @@ const ContextApi = ({ children }) => {
         date,
         priceData,
         coinsPrice,
-        isLoading
+        isLoading,
+        error
       }}
     >
       {children}

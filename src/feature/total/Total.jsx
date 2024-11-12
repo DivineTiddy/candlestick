@@ -2,6 +2,8 @@ import styled from "styled-components";
 import TotalAsset from "./components/TotalAsset";
 import TotalDeposit from "./components/TotalDeposit";
 import TotalApply from "./components/TotalApply";
+import { UseValue } from "../../context/ContextApi";
+import Error from "../../ui/Error";
 
 const Container = styled.div`
   display: flex;
@@ -9,8 +11,8 @@ const Container = styled.div`
   width: 90%;
   height: 80px;
   overflow-x: scroll;
-    /* Customize the scrollbar */
-    &::-webkit-scrollbar {
+  /* Customize the scrollbar */
+  &::-webkit-scrollbar {
     width: 0px; /* width of the entire scrollbar */
     height: 1px;
   }
@@ -25,15 +27,21 @@ const Container = styled.div`
     border-radius: 4px;
     border: 2px solid black; /* space around the thumb */
   }
-
 `;
 const Total = () => {
+  const { error } = UseValue();
   return (
-    <Container>
-      <TotalAsset />
-      <TotalDeposit />
-      <TotalApply/>
-    </Container>
+    <>
+      {error ? (
+       <Error/>
+      ) : (
+        <Container>
+          <TotalAsset />
+          <TotalDeposit />
+          <TotalApply />
+        </Container>
+      )}
+    </>
   );
 };
 
