@@ -19,12 +19,12 @@ const Container = styled.div`
     cursor: pointer;
     border: none;
     &:hover {
-      background-color: var(--white-color);
+      background-color: var( --text-color);
       color: var(--lightblack-color) !important;
     }
   }
   .clickColor {
-    background-color: var(--white-color);
+    background-color: var( --text-color);
     color: var(--lightblack-color) !important;
   }
 `;

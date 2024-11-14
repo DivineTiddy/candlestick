@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Text from "../../../ui/Text";
 
 const Container = styled.div`
-  width: 229px;
+  width: auto;
   height: inherit;
   display: flex;
   gap: 9px;
@@ -20,7 +20,7 @@ const Container = styled.div`
     justify-content: center;
   }
   .span {
-    width: 100px;
+    width: 150px;
     height: 50px;
   }
 `;
