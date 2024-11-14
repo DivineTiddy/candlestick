@@ -25,7 +25,7 @@ const Container = styled.div`
     color: var(--white-color);
     font-size: 12px;
     line-height: 14px;
-    background-color: var(--black-color);
+    background-color: var(--background-color);
     border-radius: 25px;
     border: none;
     outline: none;
